@@ -13,11 +13,11 @@ data Every : (a -> Type) -> List a -> Type where
 
 fromBinChars : Every BinChar xs -> Nat -> Nat
 fromBinChars [] _ = 0
-fromBinChars (O :: ys) k = fromBinChars ys (k - 1)
-fromBinChars (I :: ys) k = pow 2 k + fromBinChars ys (k - 1)
+fromBinChars (O :: ys) k = fromBinChars ys (pred k)
+fromBinChars (I :: ys) k = pow 2 k + fromBinChars ys (pred k)
 
 b : (s : String) -> {auto p : Every BinChar (unpack s)} -> Nat
-b {p} s = fromBinChars p (length s - 1)
+b {p} s = fromBinChars p (pred (length s))
 
 example1 : b"101" = 5
-example1 = refl
+example1 = Refl

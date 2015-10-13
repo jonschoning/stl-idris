@@ -16,7 +16,7 @@ fromChars (x :: xs) = do
 
 fromString : (s : String) -> Maybe (Every BinChar (unpack s))
 fromString s = fromChars (unpack s)
-
+ 
 partial
 main : IO ()
 main = do

@@ -15,8 +15,8 @@ orAssociative : (a : Bit) ->
                 (b : Bit) ->
                 (c : Bit) ->
                 (a `or` b) `or` c = a `or` (b `or` c)
-orAssociative O b c = refl
-orAssociative I b c = refl
+orAssociative O b c = Refl
+orAssociative I b c = Refl
 
 BitString : Type
 BitString = List Bit
@@ -30,16 +30,10 @@ bsorAssociative : (a : BitString) ->
                   (b : BitString) ->
                   (c : BitString) ->
                   (a `bsor` b) `bsor` c = a `bsor` (b `bsor` c)
-bsorAssociative [] b c = refl
-bsorAssociative (x :: xs) [] c = refl
-bsorAssociative (x :: xs) (y :: ys) [] = refl
-bsorAssociative (x :: xs) (y :: ys) (z :: zs) = ?bsorAssociative_rhs_4
-
----------- Proofs ----------
-
-algebraic.bsorAssociative_rhs_4 = proof
-  intros
-  rewrite orAssociative x y z
-  rewrite bsorAssociative xs ys zs
-  trivial
-
+bsorAssociative [] b c = Refl
+bsorAssociative (x :: xs) [] c = Refl
+bsorAssociative (x :: xs) (y :: ys) [] = Refl
+bsorAssociative (x :: xs) (y :: ys) (z :: zs) = 
+  rewrite orAssociative x y z in
+  rewrite bsorAssociative xs ys zs in
+  Refl

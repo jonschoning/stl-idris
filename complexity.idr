@@ -1,5 +1,7 @@
 module complexity
 
+import Data.Fin
+
 -- Computation complexity
 -- Motivation: coworker
 
